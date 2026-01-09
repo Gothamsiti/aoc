@@ -1,0 +1,127 @@
+.images{
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin-bottom: mw(2);
+    @media #{$media-850} {
+        margin-bottom: vh(15);
+        &.i2{
+            .image{
+                &:nth-child(1){
+                    margin: mw(1) mw(2) 0 0!important;
+                    width: mw(6)!important;
+                    height: mw(10)!important;
+                }
+                &:nth-child(2){
+                    margin: 0!important;
+                    width: mw(12)!important;
+                    height: mw(12)!important;
+                }
+            }
+        }
+        &.i3{
+            .image{
+                &:nth-child(1){
+                    margin: mw(4) mw(5) 0 0!important;
+                    width: mw(7)!important;
+                    height: mw(10)!important;
+                }
+                &:nth-child(2){
+                    margin: 0!important;
+                    width: mw(8)!important;
+                    height: mw(12)!important;
+                }
+                &:nth-child(3){
+                    margin: mw(2) 0 0 mw(8)!important;
+                    width: mw(9)!important;
+                    height: mw(12)!important;
+                }
+            }
+        }
+    }
+}
+.image{
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    &::before{
+        content: ' ';
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+        width: 0%;
+        height: 100%;
+        background-color: $orange;
+        transition:width $dt/4 $de $dt/2,opacity $dt/4 $de $dt/2;
+        z-index: 1;
+    }
+    &:first-child{
+        margin-right: mw(2);
+    }
+    span{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        font-size: 2rem;
+        color: orange;
+    }
+    strong{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        font-size: 2rem;
+        color: orange;
+    }
+    > .container{
+        width: 100%;
+        height: 130%;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        > .seoimg{
+            &:not(.visible){
+                display: none;
+            }
+        }
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: center center;
+        transform: scale(1.5) rotate(15deg) translateZ(0);
+        opacity: 0;
+        will-change: transform,opacity;
+        transition:transform $dt $de,opacity $dt $de;
+        display: block;
+        &:not(:first-child){
+            position:absolute;
+            top:0;
+            left: 0;
+        }
+        &.hide{
+            display: none;
+        }
+    }
+    #default:not(.leavePage) &.visible{
+        &::before{
+            opacity: 1;
+            width: 100%;
+            transition-delay: 0s;
+        }
+        img{
+            opacity: 1;
+            transform: scale(1) translateZ(0);
+            transition-delay: $dt/2;
+        }
+    }
+    @media #{$media-850}{
+        &.i1full{
+            height: mw(16)!important;
+            width: mw(16)!important;
+        }
+    }
+}

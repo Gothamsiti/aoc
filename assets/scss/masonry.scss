@@ -1,0 +1,10 @@
+.masonry{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: mw(2);
+    @media #{$media-850} {
+        margin-bottom: vh(15);
+    }
+}

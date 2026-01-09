@@ -1,0 +1,77 @@
+.listDownload{
+    padding-left: mw(6);
+    margin-bottom: mw(2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    h3{
+        transform: translateY(30px);
+        opacity:0;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+    }
+    a{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 900;
+        transform: translateY(30px);
+        opacity:0;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+        svg{
+            margin-right: 1rem;
+            transform: translateY(0);
+            will-change: transform;
+            transition: transform $dt $de;
+            polygon{
+                will-change: fill;
+                fill: $greyDark;
+                transition: fill $dt $de;
+            }
+        }
+        &:hover{
+            svg{
+                transform: translateY(5px);
+            }
+        }
+        &:not(:last-child){
+            margin-bottom: mw(.25);
+            @media #{$media-850} {
+                margin-bottom: vh(3);
+            }
+        }
+    }
+    > span {
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: mw(.25);
+        box-sizing: border-box;
+        padding-left: calc(14px + 1rem);
+        transform: translateY(30px);
+        opacity:0;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+        @media #{$media-850} {
+            margin-bottom: vh(3);
+        }
+    }
+    #default:not(.leavePage) &.visible{
+        @for $i from 1 to 25 {
+            :nth-child(#{$i}){
+                transform: translateY(0);
+                opacity: 1;
+                transition-duration: $dt;
+                transition-delay: $i * .1s;
+            }
+        }
+    }
+    @media #{$media-850} {
+        margin-bottom: vh(15);
+        padding: 0 mw(2);
+    }
+}

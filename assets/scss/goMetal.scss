@@ -1,0 +1,220 @@
+@keyframes rotate {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(-360deg)}
+}
+@keyframes bounce {
+    0% {transform: scale(.7)}
+    15% {transform: scale(.9)}
+    25% {transform: scale(.8)}
+    32% {transform: scale(1)}
+    50% {transform: scale(.6)}
+    65% {transform: scale(.8)}
+    75% {transform: scale(.6)}
+    88% {transform: scale(.9)}
+    100% {transform: scale(.7)}
+}
+@keyframes swing {
+    0% {transform: rotate(-3deg)}
+    50% {transform: rotate(6deg)}
+    100% {transform: rotate(-3deg)}
+}
+.goMetal{
+    position: fixed;
+    height: mw(1);
+    width: mw(1);
+    min-width: 90px;
+    min-height: 90px;
+    bottom: 10px;
+    right: 10px;
+    z-index: 3;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: center center;
+    cursor: pointer;
+    transition: opacity $dt $de $dt * 3, transform $dt $de $dt * 3;
+    > div{
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+        transition: transform $dt $de;
+        &.visible{
+            transform: scale(1);
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            pointer-events: none;
+        }
+        &.metal{
+            svg{
+                animation-name:rotate;
+                animation-duration: $dt * 6;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            &:hover{
+                animation-name:bounce;
+                animation-duration: $dt;
+                animation-iteration-count: infinite;
+            }
+        }
+        &.back{
+            &:hover{
+                animation: none;
+            }
+            > svg{
+                transform-origin: center top;
+                animation: swing $dt * 4 infinite;
+                > * {
+                    fill: #ececec;
+                }
+            }
+        }
+    }
+    .preloaderGone & {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#default.metal{
+    color: white !important;
+    header{
+        #logo{
+            > svg{
+                > *:not(#foglia-arancio) {
+                    fill: white;
+                    > * {
+                        fill: white;
+                    }
+                }
+            }
+        }
+        .headerPlayer{
+            .prev,.pause,.play,.next{
+                transform: translateY(20px);
+                opacity: 0;
+                pointer-events: none;
+            }
+            .audio{
+                svg{
+                    rect{
+                        fill: $white;
+                    }
+                }
+            }
+            .mobile{
+                svg{
+                    *{
+                        fill: white;
+                    }
+                }
+            }
+        }
+        .headerLanguageSelector{
+            color: $white;
+        }
+        #openmenu{
+            div,&:before,&:after{
+                background-color: $white;
+            }
+        }
+    }
+    #mainMenu::before{
+        background-image: linear-gradient(45deg, $black, $black);
+    }
+    .page{
+        #homepage{
+            .intro{
+                h1{
+                    color: $white;
+                }
+                h2{
+                    -webkit-text-stroke: 1px rgba($white,1);
+                    -webkit-text-fill-color: transparent;
+                }
+                svg{
+                    fill: white;
+                    > * {
+                        fill: white;
+                    }
+                }
+            }
+        }
+    }
+    .image{
+        &:before{
+            background-color: $white;
+        }
+    }
+    h1.black b, h1.black strong{
+        color: $white;
+    }
+    .ThreeDText h1{
+        -webkit-text-stroke: 2px #ffffff;
+        -webkit-text-fill-color: transparent;
+        strong{
+            -webkit-text-fill-color: $white;
+        }
+        &:nth-child(2),&:nth-child(3){
+            -webkit-text-stroke: 2px rgba(255,255,255,.3); 
+            strong{
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    } 
+    .cta{
+        color: $white;
+        &::before, &::after, span::after{
+            border: 1px solid $white;
+        }
+        &:hover{
+            &::before{
+                background-color: $white;
+            }
+        }
+    }
+    .megaBigText{
+        .strong{
+            -webkit-text-stroke: 4px $white;
+            -webkit-text-fill-color: $white;
+        }
+        .outline{
+            -webkit-text-stroke: 4px $white;
+        }
+    } 
+    .introText::before{
+        background-color: $white;
+    }
+    .listVideo .video svg,.listDownload a svg{
+        fill: $white;
+        > * {
+            fill: $white;
+        }
+    }
+    .jobOffers .section .title .plus{
+        &::before,&::after{
+            background-color: $white;
+        }
+    }
+    .jobOffers .section .content::after{
+        background-color: white;
+    }
+    .form .fieldset .field input, .form .fieldset .field select, .form .fieldset .field textarea{
+        color: $white;
+        border-color: $white;
+    }
+    .form .fieldset .field.privacy .checkboxBox{
+        border-color: $white;
+        &:before,&:after{
+            background-color: $white;
+        }
+    }
+    #contacts .contactAddresses .row .col:after{
+        background-color: $white;
+    }
+
+}

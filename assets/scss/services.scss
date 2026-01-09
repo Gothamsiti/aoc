@@ -1,0 +1,89 @@
+.soriesList{
+    width: mw(17);
+    max-width: 100%;
+    margin: 0 auto mw(2) auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .service{
+        flex:0 0 mw(4);
+        width: mw(4);
+        margin-right: mw(1);
+        margin-bottom: mw(1);
+        text-decoration: none;
+        &:nth-child(3n){
+            margin-right: 0;
+        }
+        &:nth-child(2),
+        &:nth-child(5),
+        &:nth-child(8){
+            .image.visible{
+                &::before{
+                    transition-delay: $dt/4;
+                }
+                img{
+                    transition-delay: $dt/4*3;
+                }
+            }
+        }
+        &:nth-child(3),
+        &:nth-child(6),
+        &:nth-child(9){
+            .image.visible{
+                &::before{
+                    transition-delay: $dt/4*2;
+                }
+                img{
+                    transition-delay: $dt;
+                }
+            }
+        }
+        .image{
+            max-width: 100%;
+            margin-right: 0;
+            margin-bottom: 2rem;
+            @media #{$media-850} {
+                margin-bottom: 4rem;
+            }
+        }
+        .cta{
+            margin-left: mw(.5);
+        }
+        @media #{$media-1024} {
+            display: inline-table; 
+            flex:0 0 mw(7);
+            width: mw(7);
+            &:not(:nth-child(even)){
+                margin-right: mw(2);
+            }
+            &:nth-child(even){
+                margin-right: mw(1);
+            }
+            .image{
+                width: 100%!important;
+                height: mw(8)!important;
+            }
+        }
+        @media #{$media-850} {
+            flex:0 0 100%;
+            width: 100%;
+            margin-bottom: vh(15);
+            &:not(:nth-child(even)){
+                margin-right:0;
+            }
+            .image{
+                height: mw(13)!important;
+            }
+        }
+        @media #{$media-550} {
+            .image{
+                height: mw(16)!important;
+            }
+        }
+    }
+    @media #{$media-850} {
+        box-sizing: border-box;
+        padding: 0 mw(3);
+        margin-bottom: vh(15);
+    }
+}

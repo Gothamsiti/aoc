@@ -1,0 +1,32 @@
+.breadcrumbs{
+    margin-top: mw(3.5);
+    margin-bottom: mw(.5);
+    box-sizing: border-box;
+    padding: 0 mw(3);
+    span {
+        opacity:0;
+        transform: translateX(-20px);   
+        text-transform: uppercase;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+        font-size: 1.4rem;
+        font-weight: 100;
+        a {
+            text-decoration: none;
+        }
+        > span{
+            font-weight: 700;
+        }
+    }
+    #default:not(.leavePage) &.visible{
+        span{
+            opacity:1;
+            transform: translateX(0);   
+        }
+    }
+    @media #{$media-850} {
+        margin-top: vh(20);
+        margin-bottom: vh(10);
+        padding: 0 mw(2);
+    }
+}

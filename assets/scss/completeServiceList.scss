@@ -1,0 +1,38 @@
+.completeServiceList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 mw(1);
+    .serviceItemPreview{
+        flex: 0 0 40%;
+        margin-bottom: mw(2);
+        &:nth-child(2n){
+            margin-top: mw(2);
+        }
+        text-decoration: none;
+        .cta{
+            margin-left: mw(1);
+            margin-top: mw(1);
+            text-decoration: none;
+            @media #{$media-850} {
+                margin-left: vh(7);
+                margin-top: vh(7);
+            }
+        }
+        .ThreeDText{
+            h1{
+                font-size: 4rem;
+            }
+        }
+        @media #{$media-850} {
+            flex: unset;
+            width: 100%;
+            margin-bottom: vh(15);
+        }
+    }
+    @media #{$media-850} {
+        padding: 0 mw(2);
+        margin-bottom: vh(15);
+    }
+}

@@ -1,0 +1,343 @@
+@keyframes earpod{
+    0%{
+        opacity: 0;
+        transform: translateY(20px) translateZ(0);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}
+@keyframes earpodBack{
+    0%{
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(20px) translateZ(0);
+
+    }
+}
+@keyframes audio{
+    0%{
+        opacity: 0;
+        transform: translateY(0) translateZ(0);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+    60%{
+        opacity: 0;
+        transform: translateY(0) translateZ(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(0) translateZ(0);
+    }
+}
+@keyframes afterBefore{
+    0%{
+        width: 0%;
+        left: 100%;
+        opacity: 0;
+    }
+    100%{
+        width: 100%;
+        left: 0;
+        opacity: 1;
+
+    }
+}
+@keyframes afterBeforeBack{
+    0%{
+        width: 100%;
+        left: 0;
+        opacity: 1;
+
+    }
+    100%{
+        width: 0%;
+        left: 100%;
+        opacity: 0;
+    }
+}
+@keyframes readyIn{
+    0%{
+        opacity: 0;
+        transform: translate(-50%,-60%) translateZ(0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(-50%,-50%) translateZ(0);
+    }
+}
+@keyframes readyOut{
+    0%{
+        opacity: 1;
+        transform: translate(-50%,-50%) translateZ(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translate(-50%,-90%) translateZ(0);
+    }
+}
+@keyframes betteGoDown{
+    0%{
+        opacity: 0;
+        transform: translateY(25px) translateZ(0);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(40px) translateZ(0);
+
+    }
+}
+@keyframes betteGoOut{
+    0%{
+        opacity: 1;
+        transform: translateY(40px) translateZ(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(60px) translateZ(0);
+
+    }
+}
+#preloader{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vw;
+    pointer-events: none;
+    &::before,
+    &::after{
+        content: ' ';
+        display: block;
+        position: absolute;
+        top:0;
+        background: $greyDark;
+        height: 100%;
+        z-index: 1;
+        width: 100%;
+        left: 0%;
+        opacity: 1;
+    }
+    &::after{
+        z-index: 2;
+        background: $greyMiddle;
+        transition-delay: 0s ;
+    }
+    .content{
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        svg{
+            path,circle,polygon{
+                fill: $greyDark;
+            }
+        }
+        p{
+            margin: 2rem 0 0 0;
+            opacity: 0;
+           
+        }
+    }
+    .ready{
+        pointer-events: none;
+        position: absolute;
+        z-index: 4;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) translateZ(0);
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        display: flex;
+        border:1px solid $greyDark;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        font-size: 2rem;
+        transition: color $dt $de,border-color $dt $de;
+        &:hover{
+            color: $greyDark;
+            border-color: $orange;
+        }
+    }
+    &:not(.active){
+        &::after{
+            animation: afterBeforeBack;
+            animation-fill-mode: forwards;
+            animation-duration: $dt;
+        }
+        &::before{
+            animation: afterBeforeBack;
+            animation-fill-mode: forwards;
+            animation-duration: $dt;
+            animation-delay: $dt/2;
+        }
+    }
+    &.active{
+        pointer-events: all;
+
+        &::after,
+        &::before{
+            width: 0%;
+            left: 100%;
+            opacity: 0;
+        }
+        &::after{
+            animation: afterBefore;
+            animation-fill-mode: forwards;
+            animation-duration: $dt;
+            animation-delay: $dt/2;
+        }
+        &::before{
+            animation: afterBefore;
+            animation-fill-mode: forwards;
+            animation-duration: $dt;
+        }
+        .content{
+            svg{
+                path,circle,polygon{
+                    opacity: 0;
+                    transform: translateY(20px) translateZ(0);
+                }
+                .earpods-audio-small{
+                    animation: audio;
+                    animation-iteration-count: infinite;
+                    animation-duration: $dt*2;
+                    animation-delay: $dt*3;
+                }
+                .earpods-audio-big{
+                    animation: audio;
+                    animation-iteration-count: infinite;
+                    animation-duration: $dt*2;
+                    animation-delay: $dt*4;
+                }
+                #sx{
+                    .earpods-body{
+                        path,circle,polygon{
+                            animation: earpod;
+                            animation-duration: $dt;
+                            animation-fill-mode: forwards;
+                            &.earpods-main{ animation-delay: 1.5*$dt; };
+                            &.earpods-oval{ animation-delay: 1.5*$dt + .1s; };
+                            &.earpods-circle{ animation-delay: 1.5*$dt + .2s; };
+                        }
+                    }
+                }
+                #dx{
+                    .earpods-body{
+                        path,circle,polygon{
+                            animation: earpod;
+                            animation-duration: $dt;
+                            animation-fill-mode: forwards;
+                            &.earpods-main{ animation-delay: 2.5*$dt; };
+                            &.earpods-oval{ animation-delay: 2.5*$dt + .1s; };
+                            &.earpods-circle{ animation-delay: 2.5*$dt + .2s; };
+                        }
+                    }
+                }
+            }
+            p{
+                animation: earpod;
+                animation-duration: $dt*2;
+                animation-fill-mode: forwards;
+                animation-delay: $dt*2;
+                &:nth-of-type(2){
+                    animation: none;
+                }
+            }
+        }
+    }
+    &.active.loaded{
+        .content{
+            svg{
+                path,circle,polygon{
+                    opacity: 1;
+                    transform: translateY(0) translateZ(0);
+                }
+                .earpods-audio-small,
+                .earpods-audio-big{
+                    display: none;
+                }
+                #sx{
+                    .earpods-body{
+                        path,circle,polygon{
+                            animation: earpodBack;
+                            animation-duration: $dt;
+                            animation-fill-mode: forwards;
+                            &.earpods-circle{ animation-delay: .5s; };
+                            &.earpods-oval{ animation-delay: .6s; };
+                            &.earpods-main{ animation-delay: .7s; };
+                        }
+                    }
+                }
+                #dx{
+                    .earpods-body{
+                        path,circle,polygon{
+                            animation: earpodBack;
+                            animation-duration: $dt;
+                            animation-fill-mode: forwards;
+                            &.earpods-circle{ animation-delay: .4s; };
+                            &.earpods-oval{ animation-delay: .5s; };
+                            &.earpods-main{ animation-delay: .6s; };
+                        }
+                    }
+                }
+            }
+            p:first-of-type{
+                margin: 2rem 0 0 0;
+                opacity: 1;
+                animation: earpodBack;
+                animation-duration: $dt*1;
+                animation-fill-mode: forwards;
+                animation-delay: .3s;
+                &:nth-of-type(1){
+                    animation-delay: 0s;
+                }
+            }
+            p:last-of-type{
+                animation: betteGoDown;
+                opacity: 0;
+                animation-duration: $dt*1;
+                animation-fill-mode: forwards;
+                animation-delay: 1.1s;
+            }
+                
+        }
+        .ready{
+            animation: readyIn;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+            animation-delay: .6s;
+            pointer-events: all;
+        }
+    }
+    &:not(.active).loaded{
+        .content{
+            svg{
+                display: none;
+            }
+        }
+    }
+}

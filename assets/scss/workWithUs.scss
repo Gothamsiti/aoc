@@ -1,0 +1,13 @@
+.workWithUs{
+    .formTitle{
+        width: 100%;
+        max-width: mw(10);
+        margin: 0 auto mw(1) mw(4);
+        @media #{$media-850} {
+            width: 100%;
+            margin: 0 0 vh(8) 0;
+            box-sizing: border-box;
+            padding: 0 mw(2);
+        }
+    }
+}

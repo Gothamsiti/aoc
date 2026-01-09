@@ -1,0 +1,124 @@
+.jobOffers{
+    margin: 0 auto 0 mw(4);
+    width: 100%;
+    max-width: mw(10);
+    margin-bottom: mw(2);
+
+    h3{
+        margin-bottom: mw(1);
+        transform: translateY(30px);
+        opacity: 0;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+    }
+    .section{
+        margin-bottom: mw(1);
+        transform: translateY(30px);
+        opacity: 0;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+        .title{
+            display: flex;
+            align-items: center;
+            margin-bottom: mw(.2);
+            cursor: pointer;
+            h4{
+                margin-bottom: 0;
+            }
+            .plus{
+                margin-right: 0;
+                margin-left: auto;
+                will-change: transform;
+                transition: transform $dt $de;
+                position: relative;
+                width: 10px;
+                height: 10px;
+                cursor:pointer;
+                &::before{
+                    content: ' ';
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;
+                    height: 1px;
+                    width: 100%;
+                    background-color: $black;
+                }
+                &::after{
+                    content: ' ';
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    height: 100%;
+                    width: 1px;
+                    background-color: $black;
+                    opacity: 1;
+                    transition: opacity $dt $de, transform $dt $de;
+                    will-change: transform, opacity;
+                }
+            }
+        }
+        .content{
+            position: relative;
+            height: 0;
+            box-sizing: border-box;
+            padding: 0;
+            transition: padding $dt $de, opacity $dt $de, height $dt $de;
+            &::after{
+                content: ' ';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 1px;
+                width: mw(1);
+                background-color: $black;
+            }
+            p{
+                opacity: 0;
+                transition: opacity $dt $de;
+            }
+        }
+        &.open{
+            .title{
+                .plus{
+                    &::after{
+                        transform: translateX(-50%) rotate(90deg);
+                        opacity: 0;
+                    }
+                }
+            }
+            .content{
+                height: auto;
+                opacity: 1;
+                padding: mw(.2) 0;
+                p{
+                    opacity: 1;
+                }
+            }
+        }
+        @media #{$media-850} {
+            margin-bottom: vh(6);
+        }
+    }
+    #default:not(.leavePage) &.visible{
+        h3{
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .section{
+            transform: translateY(0);
+            opacity: 1;
+            @for $i from 1 to 15 {
+                &:nth-child(#{$i}){
+                    transition-duration: $dt*6;
+                    transition-delay: $i * .3s;
+                }
+            }
+        }
+    }
+    @media #{$media-850} {
+        margin-bottom: vh(15);
+        padding:0 mw(2);
+    }
+}

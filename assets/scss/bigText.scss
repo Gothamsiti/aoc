@@ -1,0 +1,56 @@
+.bigText{
+    padding:0 mw(4);
+    margin-bottom: mw(2);
+    h1{
+        font-size: 4vw;
+        p{
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            margin-top: inherit;
+            margin-bottom: 0;
+            transform: translateY(30px);
+            opacity:0;
+            will-change: transform, opacity;
+            transition: transform $dt $de, opacity $dt $de;
+        }
+        b{
+            font-weight: inherit;
+            color: $orange;
+        }
+        @media #{$media-1024} {
+            font-size: 5vw;
+        }
+        @media #{$media-850} {
+            font-size: 6vw;
+        }
+        @media #{$media-550} {
+            font-size: 8vw;
+        }
+    }
+    #default:not(.leavePage) &.visible{
+        h1{
+            p{
+                transform: translateY(0);
+                opacity: 1;
+            }
+            @for $i from 1 to 15 {
+                :nth-child(#{$i}){
+                    transition-duration: $dt*6;
+                    transition-delay: $i * .3s;
+                }
+            }
+        }
+    }
+    @media #{$media-850} {
+        padding:0 mw(2);
+        margin-bottom: vh(15);
+    }
+    .solutions &, .services &{
+        &.first{
+            @media #{$media-850} {
+                // margin-top: vh(10);
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+.listVideo{
+    .video {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 900;
+        transform: translateY(30px);
+        opacity:0;
+        will-change: transform, opacity;
+        transition: transform $dt $de, opacity $dt $de;
+        svg{
+            margin-right: 1rem;
+            transform: translateX(0);
+            will-change: transform;
+            transition: transform $dt $de;
+            polygon{
+                will-change: fill;
+                fill: $greyDark;
+                transition: fill $dt $de;
+            }
+        }
+        &:hover{
+            svg{
+                transform: translateX(5px);
+            }
+        }
+        &:not(:last-child){
+            margin-bottom: mw(.25);
+            @media #{$media-850} {
+                margin-bottom: vh(3);
+            }
+        }
+    }
+    #default:not(.leavePage) &.visible{
+        .video{
+            @for $i from 1 to 25 {
+                &:nth-child(#{$i}){
+                    transform: translateY(0);
+                    opacity: 1;
+                    transition-duration: $dt;
+                    transition-delay: $i * .1s;
+                }
+            }
+        }
+    }
+}

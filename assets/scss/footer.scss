@@ -1,0 +1,107 @@
+footer#mainFooter{
+    margin-bottom: mw(.5);
+    box-sizing: border-box;
+    padding-top: mw(1);
+    .content{
+        opacity: 1;
+        .leavePage &{
+            opacity: 0;
+            transition: opacity $dt $de;
+        }
+        .top{
+            margin-bottom: mw(2);
+            text-align: center;
+            @media #{$media-850} {
+                margin-bottom: vh(15);
+            }
+        }
+        .bottom{
+            padding: 0 mw(1);
+            box-sizing: border-box;
+            color: $greyMiddle;
+            font-size: 1.2rem;
+
+            a{
+                position: relative;
+                .faketext{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+            }
+            > div{
+                &:nth-child(1){
+                    .copy{
+                        margin-bottom : mw(.5);
+                        @media #{$media-850} {
+                            display: flex;
+                            flex-direction: column;
+                            margin-bottom : vh(2.5);
+                            strong{
+                                margin-bottom: vh(3);
+                                font-size: 1.4em;
+                            }
+                            span{
+                                margin-bottom: vh(1);
+                                font-size: 1.2em;
+                            }
+                        }
+                    }
+                    
+                        
+                    
+                }
+                &:nth-child(2){ 
+                    .privacy{
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: mw(.5);
+                        @media #{$media-850} {
+                            margin-bottom: vh(2.5);
+                            flex-direction: column;
+                            > div{
+                                margin-bottom: vh(2.5);
+                            }
+                        }
+                        a{
+                            &:nth-child(1){
+                                margin-right: 5px;
+                            }
+                            &:nth-child(2){
+                                margin-left: 5px;
+                            }
+                        }
+                        .social {
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            margin-left: 15px;
+                            a{
+                                margin-left: 10px;
+                                position: relative;
+                                span{
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    opacity: 0;
+                                    pointer-events: none;
+                                }
+                            }
+                        }
+                    }
+                    @media #{$media-850} {
+                        box-sizing: border-box;
+                        padding-bottom: vh(2.5);
+                    }
+                }  
+                
+            }
+            @media #{$media-850} {
+                padding: 0 mw(2);
+                text-align: center;
+            }
+        }
+    }
+}

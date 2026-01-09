@@ -1,0 +1,57 @@
+#pointer{
+    pointer-events: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    .pointer{
+        display: block;
+        position: absolute;
+        border:3px solid $orange;
+        box-sizing: border-box;
+        border-radius: 50%;
+        width: mw(1);
+        height: mw(1);
+        transform: translate(-50%,-50%);
+        transition: border $dt $de, width $dt $de, height $dt $de;
+        .customCursor{
+            transform: rotate(-35deg) scale(.7);
+            transform-origin: top center;
+            position: absolute;
+            opacity: 0;
+            top: 65px;
+            left: -45px;
+            transition: top $dt $de, left $dt $de, opacity $dt $de;
+            svg{
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity $dt $de;
+                transform-origin: top center;
+            }
+        }
+        &.metal{
+            border:0px solid rgba($orange,0);
+            .customCursor{
+                opacity: 1;
+                top: 60px;
+                left: -30px;
+                transition: top $dt $de, left $dt $de, opacity $dt $de;
+                svg{
+                    opacity: 1;
+                    > * {
+                        fill: #ececec;
+                    }
+                }
+            }
+        }
+        &.halo{
+            width: mw(2);
+            height: mw(2);
+        }
+    }
+    .openMenu &{
+        .pointer{
+            border-color: $white !important;
+        }
+    }
+}

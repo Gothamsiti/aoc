@@ -1,0 +1,10 @@
+main.page{
+    position: relative;
+    z-index: 2;
+    top:0;
+}
+#default:not(.loaded){
+    main{
+        opacity: 0;
+    }
+}

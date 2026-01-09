@@ -1,0 +1,89 @@
+.introText{
+    margin-left: mw(3);
+    margin-bottom: mw(2);
+    display: flex;
+    padding: mw(1) mw(3) mw(1) mw(1);
+    position: relative;
+    h4{
+        flex:0 0 mw(5);
+        margin:0 mw(2) 0 0;
+        p {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            margin-top: inherit;
+        }
+    }
+    .text{
+        margin-top: mw(.5);
+        @media #{$media-850} {
+            margin-top: mw(2);
+        }
+    }
+    h4,.text{
+        position: relative;
+        z-index: 2;
+        transform: translateY(30px) translateZ(0);
+        opacity: 0;
+        color: $orange;
+        will-change: transform, opacity;
+        transition: transform $dt $de, color $dt $de, opacity $dt $de;
+        &::after{
+            content: ' ';
+            display: block;
+            height: 1px;
+            width: 0;
+            background-color: $greyMiddle;
+            margin-top: mw(.5);
+            will-change: width;
+            transition: width $dt/2 $de 0s;
+        }
+    }
+    &::before{
+        content: ' ';
+        position: absolute;
+        z-index: 1;
+        left: 100%;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+        background-color: $orange;
+        will-change: background-color,left;
+        transition: background-color $dt $de $dt, left $de $dt;
+    }
+    #default:not(.leavePage) &.visible{
+        &::before{
+            left: 0%;
+            background-color: $white;
+            transition: background-color $dt/2 $de $dt/2, left $de $dt/2;
+        }
+        h4,.text{
+            transform: translateY(0px) translateZ(0);
+            opacity: 1;
+            color: $greyDark;
+            transition-delay: $dt*.5;
+            &.text{
+                transition-delay: $dt;
+                &::after{
+                    transition-delay: $dt*1.5;
+                }
+            }
+            &::after{
+                width: mw(1);
+                transition-delay: $dt*.75;
+                @media #{$media-850} {
+                    width: mw(6);
+                }
+            }
+        }
+    }
+    @media #{$media-850} {
+        padding: mw(2) mw(3) mw(2) mw(2);
+        flex-direction: column;
+        margin-left: mw(2);
+        margin-bottom: vh(15);
+    }
+    @media #{$media-550}{
+        padding: mw(2);
+    }
+}

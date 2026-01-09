@@ -1,0 +1,232 @@
+.form{
+    margin: 0 auto mw(2) mw(2);
+    width: 100%;
+    max-width: mw(13);
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity $dt $de, transform $dt $de;
+    .workWithUs & {
+        max-width: mw(10);
+        margin: 0 auto mw(2) mw(4);
+        @media #{$media-850} {
+            padding-left: 0;
+            margin-bottom: vh(15);
+        }
+    }
+    @media #{$media-850} {
+        max-width: mw(16);
+    }
+    .messages{
+        padding-left: mw(2);
+        box-sizing: border-box;
+        margin-top: mw(.5);
+        .error{
+            color: red;
+        }
+    }
+    .fieldset{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        .field{
+            flex: 0 0 calc(50% - #{mw(1)});
+            position: relative;
+            margin-bottom: mw(1);
+            @media #{$media-1024} {
+                flex: 0 0 100%;
+                width: 100%;
+                margin: 0 0 mw(1) 0 !important;
+            }
+            @media #{$media-850} {
+                margin: 0 0 vh(10) 0 !important;
+            }
+            &:nth-child(even){
+                &:not(.testo){
+                    margin-left: mw(1);
+                }
+            }
+            &.privacy{
+                flex: 0 0 100%;
+                margin: 0 auto 0 mw(2);
+                display: flex;
+                align-items: baseline;
+                margin-bottom: 40px;
+                .checkboxBox{
+                    flex: 0 0 20px;
+                    height: 20px;
+                    border: 1px solid $black;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    position: relative;
+                    margin-left: -.5rem;
+                    &:before, &:after{
+                        content: "";
+                        width: 70%;
+                        height: 1px;
+                        background-color: $black;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) rotate(45deg);
+                        opacity: 0;
+                        transition: opacity $dt / 2 $de;
+                    }
+                    &:after{
+                        transform: translate(-50%, -50%) rotate(-45deg);
+                    }
+                }
+                &.compiled{
+                    .checkboxBox{
+                        &:before, &:after{
+                            opacity: 1;
+                        }
+                    }
+                }
+                input{
+                    display: none;
+                }
+                label{
+                    top: unset !important;
+                    position: relative;
+                    text-transform: none;
+                    margin-left: 1rem;
+                    cursor: pointer;
+                    pointer-events: all;
+                }
+                @media #{$media-850} {
+                    margin: 0;
+                    width: 100%;
+                    margin-bottom: mw(1.5);
+                }
+                @media #{$media-768} {
+                    margin-bottom: mw(2);
+                }
+            }
+            &.testo{
+                flex: 0 0 100%;
+            }
+            &.textarea{
+                label{
+                    top: 0;
+                    transform: unset;
+                }
+                textarea{
+                    min-height: 150px;
+                }
+            }
+            &.file{
+                input.file{
+                    display: none;
+                }
+            }
+            label{
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.4rem;
+                margin: 0 auto;
+                line-height: 1.7rem;
+                text-transform: uppercase;
+                transition: top $dt / 2 $de, bottom $dt / 2 $de;
+                pointer-events: none;
+            }
+            input,select,textarea{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                height: 50px;
+                background-color: rgba(0,0,0,0);
+                border-bottom: 1px solid $black;
+                font-family: "nimbus-sans",sans-serif;
+                font-size: 1.6rem;
+                line-height: 1.7rem;
+                color: $greyDark;
+                font-weight: 300;
+                border-radius: 0;
+                cursor: pointer;
+                &::-webkit-input-placeholder { /* WebKit browsers */
+                    opacity: 0;
+                }
+                &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                    opacity: 0;
+                }
+                &::-moz-placeholder { /* Mozilla Firefox 19+ */
+                    opacity: 0;
+
+                }
+                &:-ms-input-placeholder { /* Internet Explorer 10+ */
+                    opacity: 0;
+                }
+                &:focus{
+                    outline: none;
+                }
+            }
+            textarea{
+                resize: none;
+                border-radius: 0;
+            }
+            input:focus ~ label{
+                top: 65px;
+            }
+            textarea:focus ~ label{
+                top: 100%;
+            }
+            &.compiled{
+                label{
+                    top: 65px;
+                }
+                &.textarea{
+                    label{
+                        top: 100%
+                    }
+                }
+            }
+            &.error{
+                input,select,textarea{
+                    border-bottom: 1px solid red;
+                }
+                label{
+                    color: red;
+                }
+            }
+        }
+        .action{
+            display: flex;
+            justify-content: flex-start;
+            flex: 0 0 100%;
+            padding-left: mw(2);
+            @media #{$media-1024} {
+                padding-left: 0;
+            }
+            .submit{
+                cursor: pointer;
+                &:before{
+                    background-color: $black;
+                }
+                &:after{
+                    background-color: $white;
+                }
+            }
+        }
+        &.disabled{
+            opacity: .7;
+            pointer-events: none;
+        }
+        @media #{$media-850} {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    @media #{$media-850} {
+        padding-left: 0;
+        margin-bottom: vh(15);
+    }
+    #default:not(.leavePage) &.visible{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,14 @@
+@keyframes scrollDownAnimation{
+    0%{
+        transform: translate(50%,50%) rotate(0);
+    }
+    100%{
+        transform: translate(50%,50%) rotate(360deg);
+    }
+}
+#scrollDown{
+    position: fixed;
+    bottom: calc(#{mw(1)} + 30px);
+    right: calc(#{mw(1)} + 30px);
+    animation: scrollDownAnimation $dt*6 linear 0s infinite;
+}

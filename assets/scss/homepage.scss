@@ -1,0 +1,288 @@
+@keyframes blink{
+    0%{
+        opacity: 100%;
+    }
+    50%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+#homepage{
+    .intro{
+        height: vh(100);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: mw(1);
+        position: relative;
+        .scrolldown{
+            position: absolute;
+            bottom: mw(1);
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            > circle{
+                &:nth-child(1){
+                    animation: blink 1s linear 0s infinite;
+                }
+                &:nth-child(2){
+                    animation: blink 1s linear .25s infinite;
+                }
+                &:nth-child(3){
+                    animation: blink 1s linear .5s infinite;
+                }
+            }
+        }
+        h1,h2,.player{
+            margin: 0;
+            will-change: color;
+            transition:color $dt $de;
+        }
+        h1{
+            margin-bottom: vh(35);
+        }
+        h2{
+            color: $white;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            -webkit-text-stroke: 2px $greyDark;
+            -webkit-text-fill-color: transparent;
+            @media #{$media-850}{
+                -webkit-text-stroke: 1.6px $greyDark;
+            }
+            @media #{$media-550}{
+                font-size: 2.5rem;
+            }
+            @media #{$media-320}{
+                font-size: 2rem;
+            }
+        }
+        h3{
+            @media #{$media-550}{
+                font-size: 2.5rem;
+            }
+            @media #{$media-320}{
+                font-size: 2rem;
+            }
+        }
+        .player{
+            margin-top: 380px;
+            margin-bottom: 60px;
+            display: inline-block;
+            width: 280px;
+            height: 40px;
+            border-radius: 20px;
+            border:1px solid $greyMiddle;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            will-change: transform, opacity;
+            transition: transform $dt $de, opacity $dt $de;
+            .actions{
+                pointer-events: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 2;
+                svg{
+                    polygon{
+                        stroke:$greyMiddle;
+                        fill:none;
+                    }
+                }
+                a{
+                    span{
+                        overflow: hidden;
+                        width: 1px;
+                        height: 8px;
+                        position: absolute;
+                        display: block;
+                    }
+                }
+                .prev{
+                    position: absolute;
+                    right: 100%;
+                    top:50%;
+                    transform: translateY(-50%);
+                    white-space: nowrap;
+                    pointer-events: all;
+                    margin-right: 1rem;
+                    cursor: pointer;
+                    svg{
+                        polygon{
+                            transform-origin: center;
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+                .next{
+                    position: absolute;
+                    left: 100%;
+                    top:50%;
+                    white-space: nowrap;
+                    transform: translateY(-50%);
+                    pointer-events: all;
+                    margin-left: 1rem;
+                    cursor: pointer;
+                }
+            }
+            .songs{
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                a{
+                    flex: 0 0 100%;
+                    display: inline-block;
+                    width: 100%;
+                    padding-left: 40px;
+                    text-decoration: none;
+                    will-change: opacity;
+                    transition: opacity $dt/2 $de;
+                    box-sizing: border-box;
+                    &:first-child{
+                        will-change: margin-left, opacity;
+                        transition: margin-left $dt/2 $de, opacity $dt/2 $de;
+                    }
+                    &.active{
+                        opacity: 1;
+                    }
+                    &.halfquarter{
+                        opacity: .75;
+                    }
+                    &.half{
+                        opacity: .5;
+                    }
+                    &.quarter{
+                        opacity: .25;
+                    }
+                    &.hide{
+                        pointer-events: none;
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+        @media #{$media-850} {
+            margin-bottom: vh(15);
+        }
+    }
+    .separator{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: mw(2);
+        .cities{
+            width: 100%;
+            position: relative;
+            padding: 0 mw(1);
+            color: $greyLight;
+            font-size: 4.7vw;
+            text-transform: uppercase;
+            font-weight: 100;
+            text-align: justify;
+            margin-bottom: mw(-2);
+            box-sizing: border-box;
+            z-index: 2;
+            .city{
+                display: inline-block;
+            }
+            .row{
+                display: block;
+            }
+            .rowMobile{
+                display: none;
+            }
+            #default.leavePage &{
+                .row{
+                    opacity: 0 !important;
+                    transition: opacity $dt $de;
+                }
+                .rowMobile{
+                    opacity: 0 !important;
+                    transition: opacity $dt $de;
+                }
+            }
+            @media #{$media-850} {
+                font-size: 7vw;
+                .row{
+                    display: none;
+                }
+                .rowMobile{
+                    display: block;
+                }
+            }
+        }
+        .image{
+            overflow: visible;
+            @media #{$media-850} {
+                width: mw(8)!important;
+                height: mw(10)!important;
+            }
+            @media #{$media-550} {
+                width: mw(12)!important;
+                height: mw(16)!important;
+            }
+            .container{
+                overflow: visible;
+                height: 100%;
+                .seoimg{
+                    position: absolute;
+                }
+            }
+        }
+        > div{
+            position: relative;
+            z-index: 1;
+        }
+        @media #{$media-850} {
+            margin-bottom: vh(15);
+        }
+    }
+    .preloaderGone:not(.leavePage) &{
+        .letter{
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h1{
+            .letter{
+                @for $i from 1 to 300 {
+                    &:nth-child(#{$i}){
+                        transition-delay: .7s + .1s * $i;
+                    }
+                }
+            }
+        }
+        h3{
+            .letter{
+                @for $i from 1 to 300 {
+                    &:nth-child(#{$i}){
+                        transition-delay: 2s + .05s * $i;
+                    }
+                }
+            }
+        }
+        .player{
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 2.5s
+        }
+    }
+    .ctaSection{
+        @media #{$media-850} {
+            margin-bottom: vh(15);
+        }
+    }
+}

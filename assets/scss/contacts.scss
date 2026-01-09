@@ -1,0 +1,58 @@
+#contacts{
+    .contactAddresses{
+        width: 100%;
+        max-width: mw(12);
+        margin: 0 auto mw(1) auto;
+        @media #{$media-768} {
+            max-width: mw(16);
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity $dt $de, transform $dt $de;
+            &:not(:last-child){
+                margin-bottom: mw(2);
+            }
+            h3{
+                flex: 0 0 100%;
+            }
+            .col{
+                flex: 0 0 50%;
+                position: relative;
+                @media #{$media-1024} {
+                    flex: 0 0 100%;
+                }
+                h4{
+                    white-space: pre-wrap;
+                    justify-content: space-between;
+                }
+                &:after{
+                    content: "";
+                    width: mw(1);
+                    height: 1px;
+                    background-color: $black;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    @media #{$media-1024} {
+                        display: none;
+                    }
+                }
+            }
+            @for $i from 1 to 20 {
+                &:nth-child(#{$i}){
+                    transition-delay: $i * .2s;
+                }
+            }
+        }
+        #default:not(.leavePage) &.visible{
+            .row{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+}

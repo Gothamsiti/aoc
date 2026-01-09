@@ -1,0 +1,47 @@
+/* COLORS */
+
+$white : #ffffff;
+$black : #010202;
+$greySoft : #F0F0F0;
+$greyLight : #D2D2D2;
+$greyMiddle : #B9B9B9;
+$greyDark : #383838;
+$blue : #002AFF;
+$green: #009A0C;
+$orange: #DF782E;
+$darkOrange: #bd5912;
+
+
+$de : cubic-bezier(0.115, 0.990, 0.450, 1);
+$dt : 1s;
+
+
+$media-1500: 'screen and (max-width:1500px)';
+$media-1440: 'screen and (max-width:1440px)';
+$media-1200: 'screen and (max-width:1200px)';
+$media-1024: 'screen and (max-width:1024px)';
+$media-850: 'screen and (max-width:850px)';
+$media-768: 'screen and (max-width:768px)';
+$media-620: 'screen and (max-width:620px)';
+$media-550: 'screen and (max-width:550px)';
+$media-500: 'screen and (max-width:500px)';
+$media-375: 'screen and (max-width:375px)';
+$media-920: 'screen and (max-width:920px)';
+$media-450: 'screen and (max-width:450px)';
+$media-360: 'screen and (max-width:360px)';
+$media-320: 'screen and (max-width:320px)';
+
+
+$media-height-860: 'screen and (max-height:860px)';
+$media-height-700: 'screen and (max-height:700px)';
+
+
+@function vh($unit){
+    @return calc(var(--vh, 1vh) * #{$unit});
+}
+@function vw($unit){
+    @return calc(var(--vw, 1vw) * #{$unit});
+}
+@function mw($unit){
+    @return calc(var(--vw, 1vw) * 100 / 20 * #{$unit});
+}

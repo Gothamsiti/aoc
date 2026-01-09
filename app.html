@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" {{ HTML_ATTRS }}>
+	<head>
+		{{ HEAD }} 
+                <link href="http://s3.amazonaws.com" rel="preconnect" crossorigin>
+                <link href="https://s3.amazonaws.com" rel="preconnect" crossorigin>
+                <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+                <link href="https://api.storyblok.com" rel="preconnect" crossorigin>
+	</head>
+	<body {{ BODY_ATTRS }}>
+        {{ APP }}
+        <script>
+                if((navigator.userAgent.indexOf("MSIE ") > -1 || navigator.userAgent.indexOf("Trident/") > -1) && window.location.pathname != '/ie-is-not-allowed-here'){
+                        window.location.replace('/ie-is-not-allowed-here');
+                }
+                window.itsFirstTime = true;
+                window.initedApplicationTime = new Date();
+        </script>
+        <script>
+            window.itsFirstTime = true;
+            window.initedApplicationTime = new Date();
+        </script>
+        <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+              
+                ga('create', 'UA-157372682-1', 'auto');
+                ga('set', 'anonymizeIp', true);
+                ga('send', 'pageview');
+        </script>
+	</body>
+</html>

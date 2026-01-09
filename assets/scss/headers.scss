@@ -1,0 +1,318 @@
+header{
+    position: fixed;
+    top:mw(.5);
+    left: mw(1);
+    right: mw(1);
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    #logo{
+        display: block;
+        opacity: 0;
+        transform: translate(-20px,0);
+        will-change: transform, opacity;
+        transition: opacity $dt $de $dt*1.5, transform $dt $de $dt*1.5;
+        pointer-events: none;
+        span{
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+        }
+        svg{
+            display: block;
+            width: auto;
+            max-height: 40px;
+            rect,path{
+                fill: $black;
+                will-change: fill;
+                transition: fill $dt $de 0s;
+                &#foglia-arancio{
+                    fill: $orange;
+                }
+            }
+            #air,#ocean,#cargo{
+                // transform: translateY(30px);
+                // opacity: 0;
+
+                transform: translateY(0);
+                opacity: 1;
+
+                will-change: transform, opacity;
+                transition: transform $dt $de 0s, opacity $dt $de 0s;
+                @for $i from 1 to 10 {
+                    &:nth-child(#{$i}){
+                        transition-delay: #{$dt * .3 * $i};
+                    }
+                }
+            }
+            @media #{$media-850} {
+                transform: scale(.8) translateX(-30px);
+            }
+            @media screen and (min-width:1200px) {
+                transform: scale(1.1) translateX(15px);
+            }
+        }
+        &:hover{
+            svg{
+                #air,#ocean,#cargo{
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        }
+        &.topHalf{
+            #air,#ocean,#cargo{
+                transform: translateY(30px);
+                opacity: 0;
+            }
+        }
+        @media #{$media-850} {
+            &.topZero{
+                svg{
+                    #air,#ocean,#cargo{
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    .headerPlayer{
+        flex:0;
+        margin: 0;
+        margin-left: auto;
+        white-space: nowrap;
+        color: $greyMiddle;
+        display: flex;
+        font-size: 1.2rem;
+        pointer-events: none;
+        opacity: 0;
+        transform: translate(-0,-20px);
+        will-change: transform, opacity;
+        transition: opacity $dt $de $dt*1.5, transform $dt $de $dt*1.5;
+        > .desktop{
+            display: block;
+            .prev,.pause,.play,.next{
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+                transition: transform $dt $de, opacity $dt $de;
+            }
+            @media #{$media-850} {
+                display: none;
+            }
+        }
+        > .mobile{
+            display: none;
+            position: relative;
+            > svg{
+                transform: scale(.5)
+            }
+            @media #{$media-850} {
+                display: block;
+            }
+        }
+        a{
+            margin-left: .8rem;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: $greyDark;
+            &.name{
+                pointer-events: none;
+                font-weight: 100;
+            }
+            svg{
+                margin-left: .4rem;
+                polygon,rect{
+                    fill: $greyDark;
+                    &.audio{
+                        transform-origin: center bottom;
+                        transform: scaleY(0);
+                    }
+                }
+                &.outline{
+                    polygon,rect{
+                        fill: none;
+                        stroke: $greyDark;
+                    }
+                }
+            }
+            &:hover{
+                color: $orange;
+                svg{
+                    polygon,rect{
+                        fill: $orange;
+                    }
+                    &.outline{
+                        polygon,rect{
+                            fill: $orange;
+                            stroke: $orange;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .headerLanguageSelector{
+        font-size: 1.2rem;
+        flex:0;
+        margin-right: 0;
+        margin-left: 4rem;
+        opacity: 0;
+        transform: translate(-0,-20px);
+        will-change: transform, opacity;
+        transition: opacity $dt $de $dt*1.5, transform $dt $de $dt*1.5;
+        a{
+            text-decoration: none;
+            text-transform: uppercase;
+            &.active{
+                font-weight: 900;
+            }
+            &:last-child{
+                margin-left: 1rem;
+            }
+        }
+        @media #{$media-850} {
+            display: none; // non definitivo
+        }
+    }
+    #openmenu{
+        pointer-events: none;
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 mw(.5);
+        min-height: mw(.5);
+        justify-content: center;
+        align-items: flex-start;
+        text-decoration: none;
+        margin-left: 2rem;
+        flex-direction: column;
+        position: relative;
+        &::before,&::after,div{
+            content: ' ';
+            width: mw(0);
+            height: 1px;
+            background: $greyDark;
+            margin-bottom: .6rem;
+            will-change: margin-bottom, width;
+            transition: margin-bottom $dt $de, width $dt $de, transform $dt $de;
+            
+        }
+        &::after{
+            margin-bottom: 0;
+        }
+        span{
+            position: absolute;
+            top: 0;
+            pointer-events: none;
+            opacity: 0;
+        }
+        @media #{$media-850} {
+            margin-left: 1rem;
+        }
+    }
+    .loaded.preloaderGone &{
+        #logo,#openmenu,.headerPlayer,.headerLanguageSelector{
+            pointer-events: all;
+            opacity: 1;
+            transform: translate(0,0);
+        }
+        #openmenu{
+            pointer-events: all;
+            @media(hover: hover) and (pointer: fine){
+                &::before,&::after,div{
+                    width: mw(.5);
+                }
+            }
+            &::before{
+                width: mw(.5);
+                @media #{$media-850} {
+                    width: mw(1.2);
+                }
+                @media #{$media-550} {
+                    width: 34px;
+                }
+            }
+            &::after{
+                width: mw(.3);
+                @media #{$media-850} {
+                    width: mw(.8);
+                }
+                @media #{$media-550} {
+                    width: 28px;
+                }
+            }
+            div{
+                width: mw(.4);
+                @media #{$media-850} {
+                    width: mw(1);
+                }
+                @media #{$media-550} {
+                    width: 30px;
+                }
+            }
+        }
+    }
+    .openMenu &{
+        #openmenu{
+            &::before,div,&::after{
+                width: mw(.5) !important;
+                margin-bottom: 0;
+                background: $white;
+                transform: rotate(45deg);
+                @media #{$media-850} {
+                    width: mw(1)!important;
+                }
+                @media #{$media-550} {
+                    width: 30px!important;
+                }
+            }
+            &::before{
+                margin-bottom: -1px;
+                opacity: 0;
+            }
+            div{
+                transform: rotate(-45deg);
+                margin-bottom: -1px;
+            }
+        }
+        #logo{
+            svg{
+                rect,path{
+                    fill: $white;
+                    #foglia-arancio{
+                        fill: $white;
+                    }
+                }
+            }
+        }
+        .headerPlayer{
+            a{
+                color: $white;
+                svg{
+                    polygon,rect{
+                        fill: $white;
+                    }
+                    &.outline{
+                        polygon,rect{
+                            stroke: $white;
+                            fill: none;
+                        }
+                    }
+                }
+            }
+            .mobile{
+                svg {
+                    *{
+                        fill: white;
+                    }
+                }
+            }
+        }
+        .headerLanguageSelector{
+            color: white;
+        }
+    }
+}
