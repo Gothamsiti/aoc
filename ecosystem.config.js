@@ -10,7 +10,7 @@ module.exports = {
             },
             time: true,
             exec_mode: "fork",
-            interpreter : 'node@14.19.3'
+            interpreter : 'node@14.21.3'
         }
     ]
 }
