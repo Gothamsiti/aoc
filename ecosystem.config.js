@@ -2,7 +2,7 @@ module.exports = {
     apps : [
         {
             name : "AirOceanCargoGothamDemo",
-            script : "/home/gothamsiti/apps/fe/development/node_modules/nuxt/bin/nuxt.js",
+            script : "npm run start",
             args : "start --port 3200",
             env: {
                 APIHOST:"https://aoc.gotham.studio",
