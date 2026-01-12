@@ -1,16 +1,15 @@
 module.exports = {
-    apps : [
-        {
-            name : "AirOceanCargoGothamDemo",
-            script : "npm run start",
-            args : "start --port 3200",
-            env: {
-                APIHOST:"https://aoc.gotham.studio",
-                ENVIROMENT: "production",
-            },
-            time: true,
-            exec_mode: "fork",
-            interpreter : 'node@14.21.3'
-        }
-    ]
+  apps: [
+    {
+      name: "AirOceanCargoGothamDemo",
+      script: "/home/gothamsiti/apps/aoc/node_modules/nuxt/bin/nuxt.js",
+      args: "start -p 3200",
+      env: {
+        APIHOST: "https://aoc.gotham.studio",
+        ENVIROMENT: "production"
+      },
+      exec_mode: "fork",
+      time: true
+    }
+  ]
 }
